@@ -1,0 +1,119 @@
+/*
+ * Copyright (c)2022 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.example.quizgame.ui
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
+import com.example.quizgame.data.MAX_NO_OF_QUESTIONS
+import com.example.quizgame.data.SCORE_INCREASE
+import com.example.quizgame.data.allQuestions
+import com.example.quizgame.data.allQuestions
+import com.example.quizgame.ui.GameUiState
+import com.example.quizgame.ui.Question
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+
+/**
+ * ViewModel containing the app data and methods to process the data
+ */
+class GameViewModel : ViewModel() {
+
+    // Game UI state
+    private val _uiState = MutableStateFlow(GameUiState())
+    val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
+
+    // Set of words used in the game
+    private var question: MutableSet<Question> = mutableSetOf()
+    private lateinit var useQuestion: Question
+
+    init {
+        resetGame()
+    }
+
+    /*
+     * Re-initializes the game data to restart the game.
+     */
+    fun resetGame() {
+        question.clear()
+        _uiState.value = GameUiState(useQuestion = pickRandomQuestionAndShuffle())
+    }
+
+    /*
+     * Update the user's guess
+     */
+    /*
+     * Checks if the user's guess is correct.
+     * Increases the score accordingly.
+     */
+    fun checkUserAnswer(userAnswer: String) {
+        if (userAnswer.equals(useQuestion.answer)) {
+            updateGameState()
+        }else {
+            _uiState.update { currentState ->
+                currentState.copy(useQuestion)}
+        }
+    }
+
+    /*
+     * Skip to next word
+     */
+
+
+    /*
+     * Picks a new currentWord and currentScrambledWord and updates UiState according to
+     * current game state.
+     */
+    private fun updateGameState() {
+        if (question.size == 10){
+            //Last round in the game, update isGameOver to true, don't pick a new word
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isGameOver = true
+                )
+            }
+        } else{
+            // Normal round in the game
+            _uiState.update { currentState ->
+                currentState.copy(
+                    useQuestion = pickRandomQuestionAndShuffle(),
+                    numQue = currentState.numQue.inc(),
+                )
+            }
+        }
+    }
+
+    private fun shuffleCurrentQuestion(question: Question): Question {
+        val shuffleChoice = question.choice.toMutableList()
+        shuffleChoice.shuffle()
+        question.choice = shuffleChoice
+        return question
+    }
+
+    private fun pickRandomQuestionAndShuffle(): Question {
+        useQuestion = allQuestions.random()
+        if (question.contains(useQuestion)) {
+            return pickRandomQuestionAndShuffle()
+        } else {
+            question.add(useQuestion)
+            return shuffleCurrentQuestion(useQuestion)
+        }
+    }
+}

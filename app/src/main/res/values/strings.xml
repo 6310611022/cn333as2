@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QuizGame</string>
+    <string name="skip">Skip</string>
+    <string name="submit">Submit</string>
+    <string name="play_again">Play Again</string>
+    <string name="exit">Exit</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="num_que">%d of 10 questions</string>
+</resources>
