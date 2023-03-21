@@ -4,16 +4,15 @@ import android.app.Activity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -114,9 +113,12 @@ fun GameLayout(
                 .fillMaxWidth()
                 .height(45.dp)
                 .padding(start = 8.dp),
-            onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[0]) }
+            onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[0]) },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFF9D6D4)),
+            shape = RoundedCornerShape(20.dp)
         ) {
             Text(text = currentQuestion.choice[0],
+                color = Color(0xFF48404D),
                 fontSize = 18.sp,
                 fontFamily = Montserrat)
         }
@@ -126,9 +128,12 @@ fun GameLayout(
                 .fillMaxWidth()
                 .height(45.dp)
                 .padding(start = 8.dp),
-            onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[1]) }
+            onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[1]) },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFE6B5B8)),
+            shape = RoundedCornerShape(20.dp)
         ) {
             Text(text = currentQuestion.choice[1],
+                color = Color(0xFF533637),
                 fontSize = 18.sp,
                 fontFamily = Montserrat)
         }
@@ -138,9 +143,12 @@ fun GameLayout(
                 .fillMaxWidth()
                 .height(45.dp)
                 .padding(start = 8.dp),
-            onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[2]) }
+            onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[2]) },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA7767C)),
+            shape = RoundedCornerShape(20.dp)
         ) {
             Text(text = currentQuestion.choice[2],
+                color = Color(0xFFF0D0C1),
                 fontSize = 18.sp,
                 fontFamily = Montserrat)
         }
@@ -150,9 +158,12 @@ fun GameLayout(
                 .fillMaxWidth()
                 .height(45.dp)
                 .padding(start = 8.dp),
-            onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[3]) }
+            onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[3]) },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF48404D)),
+            shape = RoundedCornerShape(20.dp)
         ) {
             Text(text = currentQuestion.choice[3],
+                color = Color(0xFFFAE5E2),
                 fontSize = 18.sp,
                 fontFamily = Montserrat)
         }
@@ -170,8 +181,11 @@ private fun FinalScoreDialog(
     AlertDialog(
         onDismissRequest = {},
         title = { Text(stringResource(R.string.congratulations),
-            fontSize = 18.sp) },
-        text = { Text(stringResource(R.string.youScored, score))},
+            fontSize = 18.sp,
+            fontFamily = Montserrat) },
+        text = { Text(stringResource(R.string.youScored, score),
+            fontSize = 16.sp,
+            fontFamily = Montserrat)},
         modifier = modifier,
         dismissButton = {
             TextButton(
@@ -180,14 +194,14 @@ private fun FinalScoreDialog(
                 }
             ) {
                 Text(text = stringResource(R.string.exit),
-                    fontSize = 14.sp,
+                    fontSize = 16.sp,
                     fontFamily = Montserrat)
             }
         },
         confirmButton = {
             TextButton(onClick = onPlayAgain) {
                 Text(text = stringResource(R.string.play_again),
-                    fontSize = 14.sp,
+                    fontSize = 16.sp,
                     fontFamily = Montserrat)
             }
         }

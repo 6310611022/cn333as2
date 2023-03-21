@@ -18,7 +18,7 @@ val allQuestions = listOf(
     Question("・ I am white. \n" +
             "・ I am frozen.\n" +
             "・ I fall from the sky.",
-        listOf("scarf", "fireplace", "ornament", "Snowflake"),
+        listOf("Scarf", "Fireplace", "Ornament", "Snowflake"),
         "Snowflake"),
     Question("・ I am cold.\n" +
             "・ I am made of snow.\n" +
