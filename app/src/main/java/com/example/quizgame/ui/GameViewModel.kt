@@ -16,16 +16,9 @@
 
 package com.example.quizgame.ui
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.quizgame.data.MAX_NO_OF_QUESTIONS
 import com.example.quizgame.data.SCORE_INCREASE
 import com.example.quizgame.data.allQuestions
-import com.example.quizgame.data.allQuestions
-import com.example.quizgame.ui.GameUiState
-import com.example.quizgame.ui.Question
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -63,9 +56,11 @@ class GameViewModel : ViewModel() {
      * Checks if the user's guess is correct.
      * Increases the score accordingly.
      */
+
     fun checkUserAnswer(userAnswer: String) {
         if (userAnswer.equals(useQuestion.answer)) {
-            updateGameState()
+            val updatedScore = _uiState.value.score.plus(SCORE_INCREASE)
+            updateGameState(updatedScore)
         }else {
             _uiState.update { currentState ->
                 currentState.copy(useQuestion)}
@@ -81,11 +76,12 @@ class GameViewModel : ViewModel() {
      * Picks a new currentWord and currentScrambledWord and updates UiState according to
      * current game state.
      */
-    private fun updateGameState() {
+    private fun updateGameState(updatedScore: Int) {
         if (question.size == 10){
             //Last round in the game, update isGameOver to true, don't pick a new word
             _uiState.update { currentState ->
                 currentState.copy(
+                    score = updatedScore ,
                     isGameOver = true
                 )
             }
@@ -95,6 +91,8 @@ class GameViewModel : ViewModel() {
                 currentState.copy(
                     useQuestion = pickRandomQuestionAndShuffle(),
                     numQue = currentState.numQue.inc(),
+                    score = updatedScore ,
+                    currentCount = currentState.currentCount.inc()
                 )
             }
         }

@@ -26,6 +26,7 @@ import com.example.quizgame.ui.theme.QuizGameTheme
 import com.example.quizgame.ui.Question
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.quizgame.ui.GameViewModel
+import com.example.quizgame.ui.theme.Montserrat
 
 @Composable
 fun GameScreen(
@@ -35,12 +36,11 @@ fun GameScreen(
     val gameUiState by gameViewModel.uiState.collectAsState()
     Column(
         modifier = modifier
-            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         GameStatus(
-            wordCount = gameUiState.numQue,
+            questionCount = gameUiState.numQue,
             score = gameUiState.score
         )
         GameLayout(
@@ -48,6 +48,7 @@ fun GameScreen(
         )
         if (gameUiState.isGameOver) {
             FinalScoreDialog(
+                score = gameUiState.score,
                 onPlayAgain = { gameViewModel.resetGame() }
             )
         }
@@ -55,16 +56,25 @@ fun GameScreen(
 }
 
 @Composable
-fun GameStatus(wordCount: Int, score: Int, modifier: Modifier = Modifier) {
+fun GameStatus(questionCount: Int, score: Int, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp)
-            .size(48.dp),
+            .padding(10.dp)
+            .size(48.dp)
     ) {
         Text(
-            text = stringResource(R.string.num_que, wordCount),
+            text = stringResource(R.string.num_que, questionCount),
             fontSize = 18.sp,
+            fontFamily = Montserrat
+        )
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentWidth(Alignment.End),
+            text = stringResource(R.string.score, score),
+            fontSize = 18.sp,
+            fontFamily = Montserrat
         )
     }
 }
@@ -76,19 +86,25 @@ fun GameLayout(
     gameViewModel: GameViewModel = viewModel(),
 ) {
     Column(
+        modifier = Modifier
+            .padding(16.dp),
+
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Text(
             text = currentQuestion.question,
-            fontSize = 28.sp,
+            fontSize = 24.sp,
+            fontFamily = Montserrat,
             modifier = modifier
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
                 .height(200.dp)
                 .padding(start = 8.dp)
+                .wrapContentHeight()
         )
     }
-    Spacer(modifier = modifier.height(20.dp))
+    Spacer(modifier = modifier.height(30.dp))
+
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
@@ -101,7 +117,8 @@ fun GameLayout(
             onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[0]) }
         ) {
             Text(text = currentQuestion.choice[0],
-                fontSize = 18.sp)
+                fontSize = 18.sp,
+                fontFamily = Montserrat)
         }
         Button(
             modifier = modifier
@@ -112,7 +129,8 @@ fun GameLayout(
             onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[1]) }
         ) {
             Text(text = currentQuestion.choice[1],
-                fontSize = 18.sp)
+                fontSize = 18.sp,
+                fontFamily = Montserrat)
         }
         Button(
             modifier = modifier
@@ -123,7 +141,8 @@ fun GameLayout(
             onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[2]) }
         ) {
             Text(text = currentQuestion.choice[2],
-                fontSize = 18.sp)
+                fontSize = 18.sp,
+                fontFamily = Montserrat)
         }
         Button(
             modifier = modifier
@@ -134,13 +153,15 @@ fun GameLayout(
             onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[3]) }
         ) {
             Text(text = currentQuestion.choice[3],
-                fontSize = 18.sp)
+                fontSize = 18.sp,
+                fontFamily = Montserrat)
         }
     }
 }
 
 @Composable
 private fun FinalScoreDialog(
+    score: Int,
     onPlayAgain: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -150,6 +171,7 @@ private fun FinalScoreDialog(
         onDismissRequest = {},
         title = { Text(stringResource(R.string.congratulations),
             fontSize = 18.sp) },
+        text = { Text(stringResource(R.string.youScored, score))},
         modifier = modifier,
         dismissButton = {
             TextButton(
@@ -158,13 +180,15 @@ private fun FinalScoreDialog(
                 }
             ) {
                 Text(text = stringResource(R.string.exit),
-                    fontSize = 14.sp)
+                    fontSize = 14.sp,
+                    fontFamily = Montserrat)
             }
         },
         confirmButton = {
             TextButton(onClick = onPlayAgain) {
                 Text(text = stringResource(R.string.play_again),
-                    fontSize = 14.sp)
+                    fontSize = 14.sp,
+                    fontFamily = Montserrat)
             }
         }
     )

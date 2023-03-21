@@ -6,4 +6,6 @@
     <string name="exit">Exit</string>
     <string name="congratulations">Congratulations!</string>
     <string name="num_que">%d of 10 questions</string>
+    <string name="score">Score: %d</string>
+    <string name="youScored">"You scored: %d"</string>
 </resources>
