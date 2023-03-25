@@ -18,7 +18,7 @@ val allQuestions = listOf(
     Question("・ I am white. \n" +
             "・ I am frozen.\n" +
             "・ I fall from the sky.",
-        listOf("Scarf", "Fireplace", "Ornament", "Snowflake"),
+        listOf("Turkey", "Fireplace", "Ornament", "Snowflake"),
         "Snowflake"),
     Question("・ I am cold.\n" +
             "・ I am made of snow.\n" +
@@ -38,12 +38,12 @@ val allQuestions = listOf(
     Question("・ I am green.\n" +
             "・ I have spiky leaves.\n" +
             "・ I have red berries.",
-        listOf("The Grinch", "Olaf", "Holly", "The Elf"),
+        listOf("The Grinch", "Carrot", "Holly", "The Elf"),
         "Holly"),
     Question("・ I am a very important person.\n" +
             "・ I am very hard working.\n" +
             "・ My job keeps me busy all year round.",
-        listOf("Reindeer", "The Elf", "Gingerbread Person", "The Grinch"),
+        listOf("Mince pie", "The Elf", "Gingerbread Person", "The Grinch"),
         "The Elf"),
     Question("・ I am usually hung on a tree.\n" +
             "・ I can last a long time.\n" +
@@ -53,7 +53,7 @@ val allQuestions = listOf(
     Question("・ I usually travel on snow but sometimes I can fly.\n" +
             "・ I am essential on Christmas Eve.\n" +
             "・ I used to be a common mode of transportation in cold countries.",
-        listOf("Christmas Tree", "Gingerbread House", "Sleigh", "Reindeer"),
+        listOf("Christmas Tree", "Gingerbread House", "Sleigh", "Star"),
         "Sleigh"),
     Question("・ I am much smaller than the usual abode.\n" +
             "・ I am edible and very tasty.\n" +
@@ -73,12 +73,37 @@ val allQuestions = listOf(
     Question("・ I come in long strips.\n" +
             "・ I come in different colors.\n" +
             "・ I am put on the Christmas tree.",
-        listOf("Tinsel", "Holly", "Sleigh", "Scarf"),
+        listOf("Tinsel", "Holly", "Sleigh", "Star"),
         "Tinsel"),
     Question("・ I am a place you sit by to keep warm.\n" +
             "・ I am usually made of bricks or stone.\n" +
             "・ you put logs in me to build a fire.",
         listOf("Fireplace", "Gingerbread House", "Scarf", "Olaf"),
         "Fireplace"),
+    Question("・ I am a big bird.\n" +
+            "・ People eat me on Christmas day.\n" +
+            "・ I taste delicious with gravy and stuffing.",
+        listOf("Star", "Turkey", "Scarf", "Olaf"),
+        "Turkey"),
+    Question("・ I am a kind of shape.\n" +
+            "・ You can see me in the night sky.\n" +
+            "・ At Christmas, I am placed at the top of the Christmas tree.",
+        listOf("Star", "Stocking", "Holly", "Olaf"),
+        "Star"),
+    Question("・ I am cold.\n" +
+            "・ I am white.\n" +
+            "・ I can be used to make a snowman.",
+        listOf("Star", "Stocking", "Christmas Tree", "Snow"),
+        "Snow"),
+    Question("・ I am a vegetable.\n" +
+            "・ I am a good snack for Santa's reindeer.\n" +
+            "・ I am orange.",
+        listOf("Carrot", "Candle", "Gingerbread Person", "Snow"),
+        "Carrot"),
+    Question("・ I am a Christmas treat.\n" +
+            "・ I have pastry on the outside.\n" +
+            "・ I have currants and sultanas inside.",
+        listOf("Carrot", "Gingerbread House", "The Nutcracker", "Mince pie"),
+        "Mince pie"),
 
     )
