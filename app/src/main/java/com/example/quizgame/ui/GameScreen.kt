@@ -87,7 +87,6 @@ fun GameLayout(
     Column(
         modifier = Modifier
             .padding(16.dp),
-
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Text(
@@ -97,12 +96,10 @@ fun GameLayout(
             modifier = modifier
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
-                .height(200.dp)
-                .padding(start = 8.dp)
-                .wrapContentHeight()
+                .height(215.dp)
         )
     }
-    Spacer(modifier = modifier.height(30.dp))
+    Spacer(modifier = modifier.height(60.dp))
 
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp)

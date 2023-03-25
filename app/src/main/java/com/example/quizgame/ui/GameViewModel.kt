@@ -107,11 +107,13 @@ class GameViewModel : ViewModel() {
 
     private fun pickRandomQuestionAndShuffle(): Question {
         useQuestion = allQuestions.random()
-        if (question.contains(useQuestion)) {
-            return pickRandomQuestionAndShuffle()
-        } else {
-            question.add(useQuestion)
-            return shuffleCurrentQuestion(useQuestion)
+
+        for (i in question) {
+            if (useQuestion.equals(i)) {
+                return pickRandomQuestionAndShuffle()
+            }
         }
+        question.add(useQuestion)
+        return shuffleCurrentQuestion(useQuestion)
     }
 }
