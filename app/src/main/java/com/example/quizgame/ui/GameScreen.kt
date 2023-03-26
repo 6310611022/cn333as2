@@ -111,11 +111,11 @@ fun GameLayout(
                 .height(45.dp)
                 .padding(start = 8.dp),
             onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[0]) },
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFF9D6D4)),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF912728)),
             shape = RoundedCornerShape(20.dp)
         ) {
             Text(text = currentQuestion.choice[0],
-                color = Color(0xFF48404D),
+                color = Color(0xFFCE8A3D),
                 fontSize = 18.sp,
                 fontFamily = Montserrat)
         }
@@ -126,11 +126,11 @@ fun GameLayout(
                 .height(45.dp)
                 .padding(start = 8.dp),
             onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[1]) },
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFE6B5B8)),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF567633)),
             shape = RoundedCornerShape(20.dp)
         ) {
             Text(text = currentQuestion.choice[1],
-                color = Color(0xFF533637),
+                color = Color(0xFFCCAF96),
                 fontSize = 18.sp,
                 fontFamily = Montserrat)
         }
@@ -141,11 +141,11 @@ fun GameLayout(
                 .height(45.dp)
                 .padding(start = 8.dp),
             onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[2]) },
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFA7767C)),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFCE8A3D)),
             shape = RoundedCornerShape(20.dp)
         ) {
             Text(text = currentQuestion.choice[2],
-                color = Color(0xFFF0D0C1),
+                color = Color(0xFF3F2F26),
                 fontSize = 18.sp,
                 fontFamily = Montserrat)
         }
@@ -156,11 +156,11 @@ fun GameLayout(
                 .height(45.dp)
                 .padding(start = 8.dp),
             onClick = { gameViewModel.checkUserAnswer(currentQuestion.choice[3]) },
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF48404D)),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF3F2F26)),
             shape = RoundedCornerShape(20.dp)
         ) {
             Text(text = currentQuestion.choice[3],
-                color = Color(0xFFFAE5E2),
+                color = Color(0xFFCCAF96),
                 fontSize = 18.sp,
                 fontFamily = Montserrat)
         }
